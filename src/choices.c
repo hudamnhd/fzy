@@ -197,6 +197,20 @@ size_t choices_available(choices_t *c) {
 	return c->available;
 }
 
+void choices_select_all(choices_t *c) {
+    for (size_t i = 0; i < c->available; i++) {
+        const char *choice = c->strings[i];
+
+        if (!choices_selected(c, choice)) {
+            choices_select(c, choice);
+        }
+    }
+}
+
+void choices_deselect_all(choices_t *c) {
+    c->selections.size = 0;
+}
+
 #define BATCH_SIZE 512
 
 struct result_list {

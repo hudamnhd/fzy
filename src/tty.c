@@ -149,7 +149,7 @@ void tty_setunderline(tty_t *tty) {
 }
 
 void tty_setbold(tty_t *tty) {
-	tty_sgr(tty, 1);
+    tty_sgr(tty, 93);
 }
 
 void tty_setnormal(tty_t *tty) {

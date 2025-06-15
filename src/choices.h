@@ -40,6 +40,8 @@ void choices_fread(choices_t *c, FILE *file, char input_delimiter);
 void choices_destroy(choices_t *c);
 void choices_add(choices_t *c, const char *choice);
 void choices_select(choices_t *c, const char *choice);
+void choices_select_all(choices_t *c);
+void choices_deselect_all(choices_t *c);
 void choices_deselect(choices_t *c, const char *choice);
 bool choices_selected(choices_t *c, const char *choice);
 size_t choices_available(choices_t *c);

@@ -149,6 +149,19 @@ static void action_select(tty_interface_t *state) {
 	}
 }
 
+static void action_select_all(tty_interface_t *state) {
+    update_state(state);
+
+		for (size_t i = 0; i < choices_available(state->choices); i++) {
+			const char *selection = choices_get(state->choices, i);
+			if (choices_selected(state->choices, selection)) {
+				choices_deselect(state->choices, selection);
+			} else {
+				choices_select(state->choices, selection);
+			}
+		}
+}
+
 static void action_emit(tty_interface_t *state) {
 	update_state(state);
 
@@ -328,6 +341,7 @@ static const keybinding_t keybindings[] = {{"\x1b", action_exit},       /* ESC *
 					   {KEY_CTRL('G'), action_exit},	 /* C-G */
 					   {KEY_CTRL('M'), action_emit},	 /* CR */
 					   {KEY_CTRL('T'), action_select},	 /* C-T */
+					   {KEY_CTRL('Y'), action_select_all},	 /* C-Y */
 					   {KEY_CTRL('P'), action_prev},	 /* C-P */
 					   {KEY_CTRL('N'), action_next},	 /* C-N */
 					   {KEY_CTRL('K'), action_prev},	 /* C-K */
